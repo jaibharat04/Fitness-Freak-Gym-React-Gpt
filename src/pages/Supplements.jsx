@@ -71,11 +71,11 @@ const Supplements = () => {
   };
 
   return (
-    <div className="bg-black min-h-screen py-12 px-4">
+    <div className="bg-black min-h-screen py-12 pt-20 px-4">
       <HomeIcon />
       <Menu />
       <h1 className="text-4xl font-bold text-center text-yellow-300 mb-12">
-        Our Supplements
+        OUR SUPPLIMENTS
       </h1>
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {supplements.map((supplement) => (

@@ -33,7 +33,7 @@ const Menu = () => {
   return (
     <>
       {isVisible && (
-        <div className="fixed top-6 right-6 z-50">
+        <div className="fixed top-2 right-1 z-50">
           <button
             className="text-white text-3xl p-2 bg-black rounded-full hover:bg-gray-800"
             onClick={toggleMenu}

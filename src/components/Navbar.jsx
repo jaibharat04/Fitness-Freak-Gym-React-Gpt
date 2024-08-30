@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const menuRef = useRef(null);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -22,6 +28,25 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Close the menu when the route changes
+    closeMenu();
+  }, [location]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        closeMenu();
+      }
+    };
+
+    // Attach listener to detect clicks outside the menu
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -137,40 +162,46 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden" id="mobile-menu">
+        <div className="md:hidden" id="mobile-menu" ref={menuRef}>
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               to="/"
+              onClick={closeMenu}
               className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               Home
             </Link>
             <Link
               to="/trainers"
+              onClick={closeMenu}
               className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               Trainers
             </Link>
             <Link
               to="/rates"
+              onClick={closeMenu}
               className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               Rates
             </Link>
             <Link
               to="/supplements"
+              onClick={closeMenu}
               className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               Supplements
             </Link>
             <Link
               to="/aboutus"
+              onClick={closeMenu}
               className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               About Us
             </Link>
             <Link
               to="/contact"
+              onClick={closeMenu}
               className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               Contact
