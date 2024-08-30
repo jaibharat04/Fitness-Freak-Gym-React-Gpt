@@ -1,4 +1,4 @@
-# Fitness Freak Gym Website [Demo](https://fitness-freak-gymm.netlify.app/)
+# Fitness Freak Gym Website [Demo🚀](https://fitness-freak-gymm.netlify.app/)
 
 ## Overview
 
